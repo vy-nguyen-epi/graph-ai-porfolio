@@ -5,266 +5,419 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Generative AI for Work & Research — Portfolio</title>
 <style>
+  /* Base layout and typography */
   :root{
-    --bg1:#0f1724;
-    --bg2:#071126;
-    --card:#0b1220cc;
-    --muted:#9aa7bf;
-    --accent1:#8b5cf6;
-    --accent2:#06b6d4;
-    --glass: rgba(255,255,255,0.04);
-    --radius:16px;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    --bg-grad1: #fff9f2;
+    --bg-grad2: #f5f0e8;
+    --accent-1: #a66b2a; /* warm brown */
+    --accent-2: #f4bf69; /* gold */
+    --muted: #6b5a45;
+    --card-bg: rgba(255,255,250,0.9);
+    --glass: rgba(255,255,255,0.6);
+    --shadow: 0 12px 30px rgba(20,18,15,0.12);
+    --radius: 16px;
+    font-family: "Georgia", "Times New Roman", serif;
+    color: #2f2a24;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#e6eef8}
-  .wrap{max-width:980px;margin:48px auto;padding:36px;border-radius:22px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow: 0 8px 30px rgba(2,6,23,0.7);position:relative;overflow:hidden}
-  header{display:flex;gap:22px;align-items:center;margin-bottom:28px}
-  .logo{width:92px;height:92px;border-radius:18px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(11,11,27,0.6)}
-  .logo h1{font-size:20px;margin:0;letter-spacing:0.4px}
-  .meta{flex:1}
-  .meta h2{margin:0;font-size:20px}
-  .meta p{margin:6px 0 0;color:var(--muted);font-size:13px}
-  nav{display:flex;gap:12px;align-items:center}
-  nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-size:13px}
-  nav a:hover{background:rgba(255,255,255,0.02);color:#fff}
-  .hero{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:stretch;margin-bottom:28px}
-  .card{background:var(--card);padding:20px;border-radius:var(--radius);backdrop-filter: blur(6px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
-  .course-title{font-size:20px;margin:0 0 10px}
-  .tags{display:flex;gap:8px;flex-wrap:wrap}
-  .tag{background:var(--glass);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:13px}
-  .about-me{display:flex;gap:16px;align-items:flex-start}
-  .about-me img{width:120px;height:120px;border-radius:14px;object-fit:cover;box-shadow:0 8px 24px rgba(2,6,23,0.6)}
-  .about-me p{color:var(--muted);line-height:1.5;margin:0}
-  .section{margin-top:26px}
-  h3{margin:0 0 12px}
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .weeks{display:flex;flex-direction:column;gap:10px}
-  .week{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
-  .week .label{font-size:14px}
-  .placeholder{font-size:13px;color:var(--muted)}
-  footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
-  /* canvas area */
-  #heroCanvas{position:absolute;right:-120px;top:-60px;width:520px;height:520px;pointer-events:none;mix-blend-mode:screen;opacity:0.9}
-  @media (max-width:880px){
-    .hero{grid-template-columns:1fr; }
-    #heroCanvas{display:none}
-    .grid-2{grid-template-columns:1fr}
-    .logo{width:76px;height:76px}
+
+  html,body{
+    height:100%;
+    margin:0;
+    background: radial-gradient(1200px 600px at 10% 10%, #fffaf2 0%, transparent 20%),
+                radial-gradient(900px 500px at 90% 90%, #fff6ef 0%, transparent 20%),
+                linear-gradient(180deg,var(--bg-grad1), var(--bg-grad2));
+    background-attachment: fixed;
   }
+
+  /* Subtle painterly texture using CSS gradients */
+  .grain {
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,230,200,0.06) 0, transparent 20%),
+      radial-gradient(circle at 80% 90%, rgba(250,240,220,0.05) 0, transparent 18%),
+      linear-gradient(transparent, rgba(255,250,245,0.03));
+    mix-blend-mode:overlay;
+    z-index:0;
+  }
+
+  .container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:36px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* Header / hero */
+  header{
+    display:flex;
+    gap:28px;
+    align-items:center;
+    margin-bottom:28px;
+  }
+
+  .portrait {
+    width:140px;
+    height:140px;
+    border-radius:14px;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,0.6), rgba(255,245,230,0.6)),
+      conic-gradient(from 120deg at 50% 50%, rgba(255,235,195,0.35), rgba(210,170,120,0.12));
+    box-shadow: var(--shadow);
+    border:1px solid rgba(0,0,0,0.04);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    color:var(--accent-1);
+    font-weight:bold;
+    font-family: "Georgia", serif;
+    flex:0 0 140px;
+  }
+
+  .title {
+    background: linear-gradient(90deg, rgba(255,250,244,0.9), rgba(255,245,235,0.9));
+    padding:18px 24px;
+    border-radius:var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(160,120,80,0.06);
+    width:100%;
+  }
+
+  h1{
+    margin:0;
+    font-size:28px;
+    letter-spacing:0.2px;
+    color:var(--accent-1);
+  }
+  .subtitle{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  /* Two-column layout for sections */
+  .section {
+    margin-top:28px;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:20px;
+  }
+
+  @media(min-width:880px){
+    .section.columns-2 { grid-template-columns: 1fr 360px; align-items:start; }
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius:14px;
+    padding:20px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(120,90,50,0.04);
+  }
+
+  /* Small details */
+  h2{
+    margin:0 0 10px 0;
+    font-size:20px;
+    color: #3c2f26;
+  }
+  p{ margin:0 0 12px 0; line-height:1.5; color:#3a342e; }
+
+  /* About me specifics */
+  .meta {
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:12px;
+  }
+  .pill {
+    background:linear-gradient(90deg, rgba(244,191,105,0.12), rgba(166,107,42,0.03));
+    color:var(--accent-1);
+    padding:8px 12px;
+    border-radius:999px;
+    font-size:13px;
+    border:1px solid rgba(160,120,80,0.06);
+  }
+
+  /* Visual motifs for old-master style header line */
+  .ornament {
+    height:6px;
+    border-radius:999px;
+    background: linear-gradient(90deg, rgba(166,107,42,0.95), rgba(244,191,105,0.9));
+    margin:14px 0;
+    box-shadow: 0 6px 18px rgba(166,107,42,0.12);
+  }
+
+  /* About course specifics */
+  .course-grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns:1fr;
+  }
+  @media(min-width:640px){ .course-grid{ grid-template-columns: 1fr 1fr; } }
+
+  .highlight {
+    background: linear-gradient(180deg, rgba(252,244,230,0.7), rgba(255,250,242,0.6));
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(160,120,80,0.04);
+  }
+
+  /* Weekly submissions table-like list */
+  .weeks {
+    display:grid;
+    gap:10px;
+  }
+  .week {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 14px;
+    border-radius:10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,250,245,0.7));
+    border:1px solid rgba(0,0,0,0.03);
+  }
+  .week .left {
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .badge {
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:700;
+    background: linear-gradient(135deg,var(--accent-1), #c98b44);
+    box-shadow: 0 6px 18px rgba(200,130,60,0.12);
+    flex:0 0 44px;
+  }
+  .wk-title { font-weight:600; color:#3a332c; }
+  .wk-sub { font-size:13px; color:#6b5a45; }
+
+  .placeholder-link {
+    font-size:13px;
+    color:var(--accent-1);
+    text-decoration:none;
+    border:1px dashed rgba(166,107,42,0.18);
+    padding:8px 12px;
+    border-radius:8px;
+    background:linear-gradient(180deg, rgba(255,250,245,0.6), rgba(255,250,245,0.3));
+  }
+
+  /* Footer */
+  footer{
+    margin-top:36px;
+    text-align:center;
+    color:#6b5a45;
+    font-size:13px;
+  }
+
+  /* Small interactive touches */
+  .placeholder-link:hover{
+    transform:translateY(-3px);
+    box-shadow: 0 10px 30px rgba(166,107,42,0.12);
+  }
+  .week:hover { transform:translateY(-4px); transition:all .18s ease; box-shadow: 0 20px 40px rgba(40,30,20,0.08); }
+  .week { transition:all .18s ease; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <canvas id="heroCanvas" width="520" height="520"></canvas>
+<div class="grain" aria-hidden="true"></div>
 
+<div class="container">
+
+  <!-- Header / About me top -->
   <header>
-    <div class="logo" aria-hidden="true">
-      <h1 style="color:#fff">GenAI</h1>
+    <div class="portrait" aria-hidden="true">GA</div>
+    <div class="title card">
+      <h1>Generative AI for Work & Research — Portfolio</h1>
+      <div class="subtitle">Curated course work, reflections, and project submissions showcasing generative AI methods for practical and scholarly use.</div>
+
+      <div class="ornament" role="presentation"></div>
+
+      <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:10px;">
+        <div style="min-width:0">
+          <div style="font-weight:700;color:#3b2f26;">Dr. Sample Name</div>
+          <div style="font-size:13px;color:#6b5a45;">Researcher — AI for Knowledge Work, applied ML & human-centered design</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="pill">Generative AI</div>
+          <div class="pill">Work & Research</div>
+        </div>
+      </div>
     </div>
-    <div class="meta">
-      <h2>Generative AI for Work & Research</h2>
-      <p>8-week practical course — apply generative AI to content, research, analysis, and automation.</p>
-    </div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#course">Course</a>
-      <a href="#submissions">Weekly Submissions</a>
-    </nav>
   </header>
 
-  <div class="hero">
-    <div class="card">
-      <h3 class="course-title">Course overview</h3>
-      <div class="tags" style="margin-bottom:12px;">
-        <span class="tag">No-code & hands-on</span>
-        <span class="tag">Workflows & automation</span>
-        <span class="tag">Research & literature</span>
-        <span class="tag">Chatbots & RAG</span>
-      </div>
-      <p class="placeholder">This 8-week course teaches practical GenAI techniques to automate documents, analyze data, build knowledge systems, and produce reproducible outputs for work and research. Weekly live workshops, projects, and a final capstone.</p>
+  <!-- Main sections -->
+  <main class="section columns-2" aria-labelledby="about-me">
 
-      <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
-        <div class="tag">Format: Live workshops + exercises</div>
-        <div class="tag">Effort: ~4–6 hrs / week</div>
-        <div class="tag">No coding required</div>
-      </div>
-    </div>
+    <!-- Left column: About me -->
+    <section id="about-me" class="card" aria-label="About me">
+      <h2>About me</h2>
+      <p>I am an interdisciplinary researcher and practitioner focused on applying generative AI to improve productivity, knowledge work, and research workflows. My work blends machine learning, human-centered design, and reproducible research to create tools and methods that augment human thought and decision-making.</p>
 
-    <aside class="card">
-      <h3 style="margin-top:0">Instructor</h3>
-      <div class="about-me" style="margin-top:8px">
-        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='100%' height='100%' fill='%23203034'/><text x='50%' y='50%' fill='%23ffffff' font-size='40' font-family='Arial' dominant-baseline='middle' text-anchor='middle'>You</text></svg>" alt="Instructor portrait placeholder">
-        <div>
-          <p><strong style="color:#fff">[Your Name]</strong></p>
-          <p class="placeholder">Researcher & practitioner focused on practical AI for productivity, documentation, and reproducible research. See CV highlights below.</p>
+      <div class="meta" aria-hidden="false">
+        <div class="pill">PhD — Human-Centered AI</div>
+        <div class="pill">Applied ML & NLP</div>
+        <div class="pill">Research & Teaching</div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <h3 style="margin:10px 0 6px 0;font-size:15px;color:#3c2f26;">Selected highlights from CV</h3>
+        <ul style="margin:0 0 8px 18px;color:#3a342e;">
+          <li>Led interdisciplinary projects integrating generative models into academic and enterprise workflows.</li>
+          <li>Publications on prompt engineering, model evaluation, and human–AI collaboration.</li>
+          <li>Experience teaching graduate and professional courses on applied generative AI.</li>
+        </ul>
+      </div>
+
+      <div style="margin-top:10px;font-size:13px;color:#6b5a45;">
+        Note: contact info is omitted from this public portfolio to prevent spam.
+      </div>
+    </section>
+
+    <!-- Right column: Course summary -->
+    <aside class="card" aria-label="About the course">
+      <h2>About the course</h2>
+      <div class="course-grid">
+        <div class="highlight">
+          <strong>Title:</strong> Generative AI for Work & Research<br>
+          <strong>Format:</strong> Weekly modules with hands-on assignments and reflective write-ups.
+        </div>
+        <div class="highlight">
+          <strong>Focus areas:</strong>
+          <ul style="margin:8px 0 0 18px;color:#3a342e;">
+            <li>Practical prompt design & evaluation</li>
+            <li>Integrating models into research workflows</li>
+            <li>Responsible use and reproducible pipelines</li>
+          </ul>
         </div>
       </div>
 
-      <div style="margin-top:14px;font-size:13px;color:var(--muted)">
-        <strong>Highlights</strong>
-        <ul style="margin:8px 0 0 18px;color:var(--muted)">
-          <li>Experience: AI tools for research workflows</li>
-          <li>Teaching: hands-on workshops and project supervision</li>
-          <li>Tools: LLMs, RAG, automation platforms</li>
-        </ul>
+      <div style="margin-top:12px;">
+        <h3 style="margin:8px 0 8px 0;font-size:15px;color:#3c2f26;">Course structure</h3>
+        <p style="margin-bottom:6px;">Taught across 10 weekly modules. Each week includes: short readings, a hands-on prompt/modeling task, and a written submission summarizing methods and reflections.</p>
+
+        <div style="margin-top:8px;">
+          <strong style="font-size:13px;color:#3a332c;">Assessment</strong>
+          <p style="font-size:13px;margin:6px 0 0 0;color:#6b5a45;">Weekly submissions (50%), final project (40%), participation & peer feedback (10%).</p>
+        </div>
       </div>
     </aside>
-  </div>
+  </main>
 
-  <section id="about" class="section card">
-    <h3>About me</h3>
-    <div style="display:flex;gap:18px;align-items:flex-start;margin-top:10px">
-      <div style="flex:1">
-        <p class="placeholder">I am a researcher and instructor working at the intersection of generative AI, productivity, and applied research workflows. My work focuses on using modern AI tools to accelerate literature reviews, automate reporting, build knowledge assistants, and create reproducible data-to-insight pipelines.</p>
-        <p class="placeholder" style="margin-top:10px"><strong>Selected CV highlights</strong></p>
-        <ul style="margin:8px 0 0 18px;color:var(--muted)">
-          <li>PhD / MSc in [field] — research on applied ML and knowledge synthesis (replace with your details)</li>
-          <li>Multiple course and workshop instructor for researchers and knowledge workers</li>
-          <li>Consulting: deployed RAG systems and automation for teams</li>
-          <li>Publications & talks: on AI-assisted research workflows and reproducible analysis</li>
-        </ul>
-      </div>
-      <div style="width:240px">
-        <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;">
-          <p style="margin:0 0 8px"><strong>Quick CV</strong></p>
-          <table style="width:100%;font-size:13px;color:var(--muted);border-collapse:collapse">
-            <tr><td style="padding:6px 0">Role</td><td style="padding:6px 0;text-align:right">Instructor / Researcher</td></tr>
-            <tr><td style="padding:6px 0">Domains</td><td style="padding:6px 0;text-align:right">GenAI, automation, research</td></tr>
-            <tr><td style="padding:6px 0">Teaching</td><td style="padding:6px 0;text-align:right">Workshops & short courses</td></tr>
-          </table>
+  <!-- Weekly submissions -->
+  <section class="section" aria-labelledby="weekly-submissions" style="margin-top:28px;">
+    <div class="card" id="weekly-submissions" aria-label="Weekly submissions">
+      <h2>Weekly submissions</h2>
+      <p style="margin-bottom:12px;">Placeholder links for weekly deliverables. Replace the placeholders with final URLs when ready.</p>
+
+      <div class="weeks" role="list" aria-label="List of weekly submissions">
+
+        <!-- Weeks 1–10 as placeholders -->
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W1</div>
+            <div>
+              <div class="wk-title">Week 1 — Foundations</div>
+              <div class="wk-sub">Intro to generative models, prompt basics</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#" aria-disabled="true">Placeholder — Add link</a>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="course" class="section">
-    <div class="grid-2">
-      <div class="card">
-        <h3>About the course</h3>
-        <p class="placeholder">An applied 8‑week course covering LLM fundamentals, text and data workflows, literature synthesis, custom chatbots and retrieval-augmented systems, plus automation for documents and spreadsheets. Students build tools and submit weekly deliverables culminating in a capstone project.</p>
-
-        <h4 style="margin-top:14px;color:#cfe8ff">Sample weekly topics</h4>
-        <ol style="margin:8px 0 0 18px;color:var(--muted)">
-          <li>LLM fundamentals & prompt design</li>
-          <li>Generating and editing documents & presentations</li>
-          <li>Automating spreadsheets and data tasks</li>
-          <li>Literature search & knowledge synthesis</li>
-          <li>Text analysis & classification</li>
-          <li>Building RAG systems & chatbots</li>
-          <li>Workflow automation & integrations</li>
-          <li>Capstone: deployable project</li>
-        </ol>
-      </div>
-
-      <div class="card">
-        <h3>Course outcomes</h3>
-        <ul style="margin:8px 0 0 18px;color:var(--muted)">
-          <li>Design reproducible AI-assisted workflows for research and reports</li>
-          <li>Build simple RAG-backed assistants for domain tasks</li>
-          <li>Automate repetitive tasks across docs, spreadsheets and emails</li>
-          <li>Evaluate and choose appropriate GenAI tools for a given task</li>
-        </ul>
-
-        <div style="margin-top:14px">
-          <strong style="color:#cfe8ff">Capstone</strong>
-          <p class="placeholder" style="margin:8px 0 0">Students deliver a small, deployable project demonstrating a workflow (e.g., automated report generator, literature assistant, or chatbot for a research task).</p>
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W2</div>
+            <div>
+              <div class="wk-title">Week 2 — Prompts & Chains</div>
+              <div class="wk-sub">Structured prompting, chains of thought</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#" aria-disabled="true">Placeholder — Add link</a>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="submissions" class="section card">
-    <h3>My weekly submissions</h3>
-    <p class="placeholder" style="margin-bottom:12px">Links to weekly deliverables will be added here. For now these are placeholders you can update later.</p>
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W3</div>
+            <div>
+              <div class="wk-title">Week 3 — Data & Context</div>
+              <div class="wk-sub">Context framing, retrieval-augmented generation</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#" aria-disabled="true">Placeholder — Add link</a>
+        </div>
 
-    <div class="weeks">
-      <div class="week"><div class="label">Week 1 — LLM fundamentals & prompts</div><div class="placeholder">Placeholder link</div></div>
-      <div class="week"><div class="label">Week 2 — Documents & presentations</div><div class="placeholder">Placeholder link</div></div>
-      <div class="week"><div class="label">Week 3 — Spreadsheets & automation</div><div class="placeholder">Placeholder link</div></div>
-      <div class="week"><div class="label">Week 4 — Literature search & synthesis</div><div class="placeholder">Placeholder link</div></div>
-      <div class="week"><div class="label">Week 5 — Text analysis</div><div class="placeholder">Placeholder link</div></div>
-      <div class="week"><div class="label">Week 6 — RAG & chatbots</div><div class="placeholder">Placeholder link</div></div>
-      <div class="week"><div class="label">Week 7 — Workflow integrations</div><div class="placeholder">Placeholder link</div></div>
-      <div class="week"><div class="label">Week 8 — Capstone</div><div class="placeholder">Placeholder link</div></div>
-    </div>
-  </section>
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W4</div>
+            <div>
+              <div class="wk-title">Week 4 — Evaluation</div>
+              <div class="wk-sub">Metrics, human evaluation, reproducibility</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#" aria-disabled="true">Placeholder — Add link</a>
+        </div>
 
-  <footer>
-    <div>Course portfolio — Generative AI for Work & Research • Updated: October 12, 2025</div>
-  </footer>
-</div>
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W5</div>
+            <div>
+              <div class="wk-title">Week 5 — Tools & Integration</div>
+              <div class="wk-sub">APIs, pipelines, and tooling</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#" aria-disabled="true">Placeholder — Add link</a>
+        </div>
 
-<script>
-/* Canvas decorative visuals — organic gradient blobs + animated particles */
-const c = document.getElementById('heroCanvas');
-const ctx = c.getContext('2d');
-const W = c.width, H = c.height;
-let t = 0;
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W6</div>
+            <div>
+              <div class="wk-title">Week 6 — Creativity & Writing</div>
+              <div class="wk-sub">Creative uses, drafting and revision</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#" aria-disabled="true">Placeholder — Add link</a>
+        </div>
 
-/* draw soft layered blobs with gradient */
-function drawBlobs(){
-  ctx.clearRect(0,0,W,H);
-  // layered blobs
-  const blobs = [
-    {x:360,y:120,r:220,c1:'#8b5cf6',c2:'#06b6d4',a:0.12,dx:Math.sin(t*0.7)},
-    {x:260,y:260,r:160,c1:'#06b6d4',c2:'#60a5fa',a:0.10,dx:Math.cos(t*0.6)},
-    {x:420,y:340,r:120,c1:'#7c3aed',c2:'#06b6d4',a:0.08,dx:Math.sin(t*0.4)}
-  ];
-  blobs.forEach((b,i)=>{
-    const grd = ctx.createRadialGradient(b.x+10*b.dx,b.y-8*b.dx, 10, b.x, b.y, b.r);
-    grd.addColorStop(0, hexToRgba(b.c1,b.a));
-    grd.addColorStop(1, hexToRgba(b.c2,b.a*0.2));
-    ctx.fillStyle = grd;
-    ctx.beginPath();
-    ctx.ellipse(b.x + 6*Math.sin(t*0.9*(i+1)), b.y + 6*Math.cos(t*0.6*(i+1)), b.r, b.r*0.8, Math.sin(t*0.2+i), 0, Math.PI*2);
-    ctx.fill();
-  });
-}
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W7</div>
+            <div>
+              <div class="wk-title">Week 7 — Research Applications</div>
+              <div class="wk-sub">Literature synthesis, experiment design</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#" aria-disabled="true">Placeholder — Add link</a>
+        </div>
 
-/* simple moving particle field */
-const particles = Array.from({length:28},(_,i)=>({
-  x: Math.random()*W,
-  y: Math.random()*H,
-  r: 0.8+Math.random()*2.4,
-  vx: (Math.random()-0.5)*0.4,
-  vy: (Math.random()-0.5)*0.4,
-  a: 0.2+Math.random()*0.4
-}));
-function drawParticles(){
-  particles.forEach(p=>{
-    p.x += p.vx + 0.2*Math.sin(t*0.3);
-    p.y += p.vy + 0.2*Math.cos(t*0.3);
-    if(p.x<0) p.x = W; if(p.x>W) p.x = 0;
-    if(p.y<0) p.y = H; if(p.y>H) p.y = 0;
-    ctx.beginPath();
-    ctx.fillStyle = 'rgba(255,255,255,'+(p.a*0.4)+')';
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fill();
-  });
-}
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W8</div>
+            <div>
+              <div class="wk-title">Week 8 — Collaboration & Workflows</div>
+              <div class="wk-sub">Team workflows, handoffs, reproducibility</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#" aria-disabled="true">Placeholder — Add link</a>
+        </div>
 
-function animate(){
-  t += 0.016;
-  drawBlobs();
-  drawParticles();
-  requestAnimationFrame(animate);
-}
-function hexToRgba(hex,alpha){
-  const c = hex.replace('#','');
-  const n = parseInt(c,16);
-  const r = (n>>16)&255, g=(n>>8)&255, b=n&255;
-  return `rgba(${r},${g},${b},${alpha})`;
-}
-animate();
-
-/* Smooth anchor scroll */
-document.querySelectorAll('nav a').forEach(a=>{
-  a.addEventListener('click', e=>{
-    e.preventDefault();
-    const id = a.getAttribute('href').slice(1);
-    document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
-  });
-});
-</script>
-</body>
-</html>
+        <div class="week" role="listitem">
+          <div class="left">
+            <div class="badge">W9</div>
+            <div>
+              <div class="wk-title">Week 9 — Responsible Practices</div>
+              <div class="wk-sub">Bias, safety, and governance</div>
+            </div>
+          </div>
+          <a class="placeholder-link" href="#"
