@@ -1,40 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vy Nguyen – Generative AI Portfolio</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap');
-
-    :root {
-      --gradient-bg: linear-gradient(135deg, #1e1e2f, #3a3a5c);
-      --section-bg: #2b2b3d;
-      --text-color: #f0f0f0;
-      --accent-color: #4db6ac; /* Teal accent */
-      --font-title: 'Playfair Display', serif;
-      --font-body: 'Inter', sans-serif;
-      --shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-
-    body {
-      margin: 0;
-      font-family: var(--font-body);
-      background: var(--gradient-bg);
-      color: var(--text-color);
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      padding: 3rem 2rem;
-      background: var(--section-bg);
-      box-shadow: var(--shadow);
-      flex-wrap: wrap;
-    }
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Generative AI for Work & Research — Portfolio</title>
+<style>
+  :root{
+    --bg1:#0f1724;
+    --bg2:#071126;
+    --card:#0b1220cc;
+    --muted:#9aa7bf;
+    --accent1:#8b5cf6;
+    --accent2:#06b6d4;
+    --glass: rgba(255,255,255,0.04);
+    --radius:16px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
     header img {
       width: 140px;
       height: 140px;
@@ -43,148 +24,191 @@
       object-position: center;  /* Center the face */
       box-shadow: var(--shadow);
     }
-
-    header h1 {
-      font-size: 2.8rem;
-      margin: 0;
-      color: var(--accent-color);
-      font-family: var(--font-title);
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-      margin-top: 0.5rem;
-    }
-
-    section {
-      padding: 3rem 2rem;
-      margin: 2rem auto;
-      max-width: 900px;
-      background: var(--section-bg);
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
-    }
-
-    section:hover {
-      transform: scale(1.02);
-    }
-
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--accent-color);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--font-title);
-    }
-
-    .about h2::before {
-      content: '👩‍🔬';
-    }
-
-    .course h2::before {
-      content: '🧠';
-    }
-
-    .submissions h2::before {
-      content: '📁';
-    }
-
-    ul {
-      padding-left: 1.2rem;
-    }
-
-    .submissions ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .submissions li {
-      background: #3c3c5a;
-      margin: 0.5rem 0;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      transition: background 0.3s ease;
-    }
-
-    .submissions li:hover {
-      background: #4d4d6f;
-    }
-
-    .submissions a {
-      text-decoration: none;
-      color: var(--accent-color);
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    .submissions a:hover {
-      color: #80cbc4;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-      }
-
-      header h1 {
-        font-size: 2rem;
-      }
-
-      section h2 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#e6eef8}
+  .wrap{max-width:980px;margin:48px auto;padding:36px;border-radius:22px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow: 0 8px 30px rgba(2,6,23,0.7);position:relative;overflow:hidden}
+  header{display:flex;gap:22px;align-items:center;margin-bottom:28px}
+  .logo{width:92px;height:92px;border-radius:18px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(11,11,27,0.6)}
+  .logo h1{font-size:20px;margin:0;letter-spacing:0.4px}
+  .meta{flex:1}
+  .meta h2{margin:0;font-size:20px}
+  .meta p{margin:6px 0 0;color:var(--muted);font-size:13px}
+  nav{display:flex;gap:12px;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-size:13px}
+  nav a:hover{background:rgba(255,255,255,0.02);color:#fff}
+  .hero{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:stretch;margin-bottom:28px}
+  .card{background:var(--card);padding:20px;border-radius:var(--radius);backdrop-filter: blur(6px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+  .course-title{font-size:20px;margin:0 0 10px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tag{background:var(--glass);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:13px}
+  .about-me{display:flex;gap:16px;align-items:flex-start}
+  .about-me img{width:120px;height:120px;border-radius:14px;object-fit:cover;box-shadow:0 8px 24px rgba(2,6,23,0.6)}
+  .about-me p{color:var(--muted);line-height:1.5;margin:0}
+  .section{margin-top:26px}
+  h3{margin:0 0 12px}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .weeks{display:flex;flex-direction:column;gap:10px}
+  .week{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+  .week .label{font-size:14px}
+  .placeholder{font-size:13px;color:var(--muted)}
+  footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+  /* canvas area */
+  #heroCanvas{position:absolute;right:-120px;top:-60px;width:520px;height:520px;pointer-events:none;mix-blend-mode:screen;opacity:0.9}
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr; }
+    #heroCanvas{display:none}
+    .grid-2{grid-template-columns:1fr}
+    .logo{width:76px;height:76px}
+  }
+</style>
 </head>
 <body>
+<div class="wrap">
+  <canvas id="heroCanvas" width="520" height="520"></canvas>
 
   <header>
     <img src="https://github.com/vy-nguyen-epi/graph-ai-porfolio/blob/main/2025-Nguyen-headshot-photo.jpg?raw=true"> 
-    <div> 
-      <h1>Vy Nguyen</h1>
-      <p>PhD Candidate in Epidemiology &amp; Biostatistics<br>University of Zürich</p>
+    <div class="meta">
+      <h2>GenAI Course Portfolio</h2>
+      <p>Projects showcasing applied skills in generative AI — transforming content creation, research workflows, data analysis, and automation.</p>
     </div>
+    <nav>
+      <a href="#about">About me</a>
+      <a href="#course">Course</a>
+      <a href="#submissions">Weekly Submissions</a>
+    </nav>
   </header>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p>I am a PhD candidate at the University of Zürich, with a background in clinical operations, public health research, and data analysis. I hold a Master of Science in Epidemiology and a Bachelor of Science in Health Science.</p>
+  <div class="hero">
+    <div class="card">
+      <h3 class="course-title">Course overview</h3>
+      <div class="tags" style="margin-bottom:12px;">
+        <span class="tag">Workflows & automation</span>
+        <span class="tag">Research & literature</span>
+        <span class="tag">Chatbots & RAG</span>
+      </div>
+      <p class="placeholder">This 8-week course teaches practical GenAI techniques to automate documents, analyze data, build knowledge systems, and produce reproducible outputs for work and research. Weekly live workshops, projects, and a final capstone.</p>
+
+      <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+        <div class="tag">Format: Live workshops + exercises</div>
+        <div class="tag">Effort: ~4–6 hrs / week</div>
+        <div class="tag">Weekly help session</div>
+      </div>
+    </div>
+
+  <section id="about" class="section card">
+    <h3>About me</h3>
+    <div style="display:flex;gap:18px;align-items:flex-start;margin-top:10px">
+      <div style="flex:1">
+        <p class="placeholder">I am a PhD candidate at the University of Zürich, with a background in clinical operations, public health research, and data analysis. I hold a Master of Science in Epidemiology and a Bachelor of Science in Health Science. My research interests include evidence synthesis, research methodology, pragmatic RCT, causal inference, RWD, AI tools, and policy. </p>
+      </div>
+    </div>
   </section>
 
-  <section class="course">
-    <h2>About the Course</h2>
-    <p><strong>Generative AI for Work & Research</strong> is an 8-week hands-on course that teaches professionals how to automate and enhance their workflows using no-code AI tools. Topics include document automation, literature reviews, chatbot creation, and visual generation. Tools used include ChatGPT, Julius, Windsurf, Elicit, LiteRev, and Botpress.</p>
+  <section id="course" class="section">
+    <div class="grid-2">
+      <div class="card">
+        <h3>Course</h3>
+        <p class="placeholder">An 8‑week hands-on course covering LLM fundamentals, text and data workflows, literature synthesis, custom chatbots and retrieval-augmented systems, plus automation for documents and spreadsheets. Students learn how to automate and enhance their workflows using various AI tools. Topics include document automation, literature reviews, chatbot creation, and visual generation. Tools used include ChatGPT, Julius, Windsurf, Elicit, LiteRev, and Botpress.</p>
+      </div>
+    </div>
   </section>
 
-  <section class="submissions">
-    <h2>Weekly Submissions</h2>
-    <ul>
-      <li>#Week 1 – Submission Placeholder</a></li>
-      <li>#Week 2 – Submission Placeholder</a></li>
-      <li>#Week 3 – Submission Placeholder</a></li>
-      <li>#Week 4 – Submission Placeholder</a></li>
-      <li>#Week 5 – Submission Placeholder</a></li>
-      <li>#Week 6 – Submission Placeholder</a></li>
-      <li>#Week 7 – Submission Placeholder</a></li>
-      <li>#Week 8 – Capstone Project Placeholder</a></li>
-    </ul>
+  <section id="submissions" class="section card">
+    <h3>My weekly submissions</h3>
+    <p class="placeholder" style="margin-bottom:12px">Links to weekly deliverables will be updated accordingly.</p>
+
+    <div class="weeks">
+      <div class="week"><div class="label">Week 1 — Documents, Presentations & Websites</div><div class="placeholder">Placeholder link</div></div>
+      <div class="week"><div class="label">Week 2 — Automated Data Analysis</div><div class="placeholder">Placeholder link</div></div>
+      <div class="week"><div class="label">Week 3 — GenAI for Research & Text Analysis</div><div class="placeholder">Placeholder link</div></div>
+      <div class="week"><div class="label">Week 4 — Custom GPTs and Chatbots</div><div class="placeholder">Placeholder link</div></div>
+      <div class="week"><div class="label">Week 5 — AI Tools for Workflow Automation</div><div 
+class="placeholder">Placeholder link</div></div>
+      <div class="week"><div class="label">Week 6 — GenAI for Communication & Outreach</div><div 
+class="placeholder">Placeholder link</div></div>
+      <div class="week"><div class="label">Week 7 — Capstone Project</div><div 
+class="placeholder">Placeholder link</div></div>
+      <div class="week"><div class="label">Week 8 — Showcase Presentation</div><div class="placeholder">Placeholder link</div></div>
+    </div>
   </section>
 
   <footer>
-    &copy; 2025 Vy Nguyen. All rights reserved.
+    <div>&copy; 2025 Vy Nguyen. All rights reserved.</div>
   </footer>
+</div>
 
+<script>
+/* Canvas decorative visuals — organic gradient blobs + animated particles */
+const c = document.getElementById('heroCanvas');
+const ctx = c.getContext('2d');
+const W = c.width, H = c.height;
+let t = 0;
+
+/* draw soft layered blobs with gradient */
+function drawBlobs(){
+  ctx.clearRect(0,0,W,H);
+  // layered blobs
+  const blobs = [
+    {x:360,y:120,r:220,c1:'#8b5cf6',c2:'#06b6d4',a:0.12,dx:Math.sin(t*0.7)},
+    {x:260,y:260,r:160,c1:'#06b6d4',c2:'#60a5fa',a:0.10,dx:Math.cos(t*0.6)},
+    {x:420,y:340,r:120,c1:'#7c3aed',c2:'#06b6d4',a:0.08,dx:Math.sin(t*0.4)}
+  ];
+  blobs.forEach((b,i)=>{
+    const grd = ctx.createRadialGradient(b.x+10*b.dx,b.y-8*b.dx, 10, b.x, b.y, b.r);
+    grd.addColorStop(0, hexToRgba(b.c1,b.a));
+    grd.addColorStop(1, hexToRgba(b.c2,b.a*0.2));
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.ellipse(b.x + 6*Math.sin(t*0.9*(i+1)), b.y + 6*Math.cos(t*0.6*(i+1)), b.r, b.r*0.8, Math.sin(t*0.2+i), 0, Math.PI*2);
+    ctx.fill();
+  });
+}
+
+/* simple moving particle field */
+const particles = Array.from({length:28},(_,i)=>({
+  x: Math.random()*W,
+  y: Math.random()*H,
+  r: 0.8+Math.random()*2.4,
+  vx: (Math.random()-0.5)*0.4,
+  vy: (Math.random()-0.5)*0.4,
+  a: 0.2+Math.random()*0.4
+}));
+function drawParticles(){
+  particles.forEach(p=>{
+    p.x += p.vx + 0.2*Math.sin(t*0.3);
+    p.y += p.vy + 0.2*Math.cos(t*0.3);
+    if(p.x<0) p.x = W; if(p.x>W) p.x = 0;
+    if(p.y<0) p.y = H; if(p.y>H) p.y = 0;
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(255,255,255,'+(p.a*0.4)+')';
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+  });
+}
+
+function animate(){
+  t += 0.016;
+  drawBlobs();
+  drawParticles();
+  requestAnimationFrame(animate);
+}
+function hexToRgba(hex,alpha){
+  const c = hex.replace('#','');
+  const n = parseInt(c,16);
+  const r = (n>>16)&255, g=(n>>8)&255, b=n&255;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+animate();
+
+/* Smooth anchor scroll */
+document.querySelectorAll('nav a').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    const id = a.getAttribute('href').slice(1);
+    document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
 </body>
 </html>
