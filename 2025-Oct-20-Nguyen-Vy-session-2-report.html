@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Life expectancy and HDI — 2020 report</title>
+  <style>
+    body{font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial; max-width:900px; margin:2rem auto; line-height:1.4}
+    h1,h2{color:#111}
+    img{max-width:100%; height:auto; display:block; margin:0.5rem 0 1rem}
+    pre {background:#f8f8f8; padding:0.75rem; overflow:auto}
+  </style>
+</head>
+<body>
+  <h1>Life expectancy and Human development index (HDI) — 2020 report</h1>
+  <h2>Life expectancy at birth (2020)</h2>
+  <img src="life_expectancy_2020_map.png" alt="Life expectancy 2020 map">
+  <h2>Human Development Index (2020)</h2>
+  <img src="hdi_2020_map.png" alt="HDI 2020 map">
+  <h2>Relationship: HDI vs Life expectancy (2020)</h2>
+  <img src="hdi_vs_life_scatter_2020.png" alt="HDI vs life expectancy scatter">
+  <h2>Interpretation</h2>
+  <p>There is a strong positive relationship between Human Development Index (HDI) and life expectancy in 2020. A Pearson correlation and linear fit on the available country data show a strong, highly significant positive association: countries with higher HDI generally have higher life expectancy. A simple linear model explains a large share of the cross-country variation (R² ≈ 0.74). In practical terms, a 0.10 increase in HDI corresponds to roughly a 4-year increase in life expectancy on average.</p>
+  <p>Some countries deviate substantially from the trend — for example, Syria and Maldives have higher life expectancy than predicted by HDI, while Lesotho and Eswatini have much lower life expectancy than predicted. These outliers may reflect local health crises, epidemiological factors (e.g., high HIV/TB burden), conflict, or data/reporting differences. Correlation does not imply causation; further multivariable analysis would be required to explore mechanisms and control for confounders.</p>
+  <h2>Reflection</h2>
+  <p>The process of using AI tools to generate this report was easy, significantly speeding up the workflow. However, critically evaluating the AI-generated content is still crucial to ensure accuracy from big picture to minute details. I was not surprised about anything as I have been using the tools for coding and generating graphs. I learned to review the outputs thoroughly and prompt differently to get the results I wanted. Overall, the tools have saved me a lot of time.</p>
+<h2>Computed statistics</h2>
+<p>Sample size: n = 190</p>
+<p><strong>Pearson's r</strong> = 0.859 (p = < 2e-16)</p>
+<p><strong>Linear model</strong>: life_expectancy = 43.346 + 39.527 × HDI (R² = 0.737)</p>
+<h3>Top 5 countries with higher life expectancy than predicted</h3>
+<table border="1" cellpadding="4" style="border-collapse:collapse">
+<tr><th>iso3</th><th>country</th><th>hdi</th><th>life_expectancy</th><th>resid</th></tr>
+<tr><td>SYR</td><td>Syria</td><td>0.570</td><td>74.2</td><td>8.33</td></tr>
+<tr><td>MDV</td><td>Maldives</td><td>0.730</td><td>78.8</td><td>6.63</td></tr>
+<tr><td>SDN</td><td>Sudan</td><td>0.513</td><td>70.2</td><td>6.59</td></tr>
+<tr><td>ETH</td><td>Ethiopia</td><td>0.486</td><td>68.4</td><td>5.80</td></tr>
+<tr><td>YEM</td><td>Yemen</td><td>0.459</td><td>67.3</td><td>5.79</td></tr>
+</table>
+<h3>Top 5 countries with lower life expectancy than predicted</h3>
+<table border="1" cellpadding="4" style="border-collapse:collapse">
+<tr><th>iso3</th><th>country</th><th>hdi</th><th>life_expectancy</th><th>resid</th></tr>
+<tr><td>LSO</td><td>Lesotho</td><td>0.537</td><td>52.3</td><td>-12.30</td></tr>
+<tr><td>SWZ</td><td>Eswatini</td><td>0.657</td><td>57.4</td><td>-11.88</td></tr>
+<tr><td>BWA</td><td>Botswana</td><td>0.718</td><td>62.4</td><td>-9.31</td></tr>
+<tr><td>AZE</td><td>Azerbaijan</td><td>0.757</td><td>64.9</td><td>-8.33</td></tr>
+<tr><td>ZAF</td><td>South Africa</td><td>0.724</td><td>64.2</td><td>-7.72</td></tr>
+</table>
+</body>
+</html>
