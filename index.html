@@ -48,9 +48,35 @@
   h3{margin:0 0 12px}
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .weeks{display:flex;flex-direction:column;gap:10px}
-  .week{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+  .week{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px;
+    border-radius:12px;
+    background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.02);
+    transition:background .25s ease, transform .25s ease, border-color .25s ease;
+  }
+  .week:hover{
+    background:linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.04));
+    border-color:var(--accent1);
+    transform:translateY(-2px);
+  }
   .week .label{font-size:14px}
   .placeholder{font-size:13px;color:var(--muted)}
+  /* Link style inside a week */
+  .week .placeholder a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:2px 6px;
+    border-radius:6px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .week .placeholder a:hover{
+    color:#fff;
+    background:var(--accent1);
+  }
   footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
   /* canvas area */
   #heroCanvas{position:absolute;right:-120px;top:-60px;width:520px;height:520px;pointer-events:none;mix-blend-mode:screen;opacity:0.9}
@@ -95,11 +121,11 @@
         <span class="tag">Research & literature</span>
         <span class="tag">Chatbots & RAG</span>
       </div>
-      <p class="placeholder">An 8-week hands-on course covering LLM fundamentals, text and data workflows, literature synthesis, custom chatbots and retrieval-augmented systems, plus automation for documents and spreadsheets. Students learn how to automate and enhance their workflows using various AI tools. Topics include document automation, literature reviews, chatbot creation, and visual generation. </p>
+      <p class="placeholder">An 8-week hands‑on course covering LLM fundamentals, text and data workflows, literature synthesis, custom chatbots and retrieval‑augmented systems, plus automation for documents and spreadsheets. Students learn how to automate and enhance their workflows using various AI tools. Topics include document automation, literature reviews, chatbot creation, and visual generation. </p>
 
       <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
         <div class="tag">Format: Live workshops + exercises</div>
-        <div class="tag">Effort: ~4-6 hrs / week</div>
+        <div class="tag">Effort: ~4‑6 hrs / week</div>
         <div class="tag">Tools: ChatGPT, Julius, Windsurf, Elicit, LiteRev, Botpress</div>
       </div>
   </section>
