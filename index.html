@@ -127,11 +127,31 @@
 
       <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
         <div class="tag">Format: Live workshops + exercises</div>
-        <div class="tag">Effort: ~4‑6 hrs / week</div>
+        <div class="tag">Effort: ~4 hrs / week</div>
         <div class="tag">Tools: OpenRouter, Botpress, Make.com, Cursor</div>
       </div>
   </section>
 
+<section id="consultation" aria-labelledby="consultation-heading" class="section section--consultation">
+  <div class="container">
+    <h2 id="consultation-heading">Contact for Consultation</h2>
+    <p class="section-intro">
+      I’d love to learn more about your problems! Please fill out the form below and I’ll get back to you shortly.
+    </p>
+
+    <div class="form-embed-wrapper">
+      <iframe
+        title="Consultation Request Form"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSercvb2jhd_b3fQpqyVHNk7syrqrfAZu-Pnuqy2WAzh_9wtkQ/viewform?embedded=true"
+        width="100%"
+        height="1200"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        loading="lazy"></iframe>
+    </div>  
+
+  
   <section id="submissions" class="section card">
     <h3>My weekly submissions</h3>
     <p class="placeholder" style="margin-bottom:12px">Links to weekly deliverables will be updated accordingly.</p>
@@ -229,6 +249,40 @@ document.querySelectorAll('nav a').forEach(a=>{
     document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
+
+  /* ---- Consultation Section Styles ---- */
+.section--consultation {
+  padding: 4rem 1rem;
+  background: #fafafa; /* adjust to match your theme */
+}
+
+.section--consultation .container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section--consultation h2 {
+  margin-bottom: 0.75rem;
+}
+
+.section--consultation .section-intro {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.form-embed-wrapper {
+  /* Ensures the iframe is responsive and well-contained */
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Smaller devices: give extra height if needed */
+@media (max-width: 480px) {
+  .section--consultation { padding: 3rem 1rem; }
+}
+  
 </script>
 </body>
 </html>
